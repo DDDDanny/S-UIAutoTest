@@ -11,7 +11,7 @@ from PySe.driver import SelectBrowser
 from Test.Business.demo_business import DemoBusiness
 
 
-# 登录继承基类
+# Case基类
 class BaseCase(unittest.TestCase):
 
     @classmethod
