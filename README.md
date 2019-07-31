@@ -104,6 +104,8 @@ class SelectBrowser(object):
 
 ### 感谢
 
+感谢Rong Che大佬的帮助：<https://github.com/CrDym>
+
 感谢虫师的pyse项目：<https://github.com/defnngj/pyse>
 
 感谢HTMLTestRunner的作者：<https://github.com/findyou/HTMLTestRunnerCN>
