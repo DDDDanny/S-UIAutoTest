@@ -2,7 +2,7 @@
 # @Time    : 2019/6/13 14:29
 # @Author  : DannyDong
 # @File    : demo_case.py
-# @describe: 登录用例
+# @describe: demo用例
 
 import time
 import unittest
