@@ -4,17 +4,27 @@
 # @File    : read_ini.py.py
 # @describe: 读取配置文件
 
+import os
 import configparser
 
 
 class ReadIni(object):
     # 构造函数
     def __init__(self, file_name=None, node=None):
+        # 获取当前目录的绝对路径
+        cur_path = os.path.abspath(__file__)
+        # 获取配置文件的绝对路径
         if file_name is None:
-            file_name = './Config/Ele_config.ini'
+            file_name = os.path.join(
+                os.path.abspath(os.path.dirname(cur_path) + os.path.sep + '../Config'), 'Ele_config.ini'
+            )
+        else:
+            file_name = os.path.join(
+                os.path.abspath(os.path.dirname(cur_path) + os.path.sep + '../Config'), file_name
+            )
 
         if node is None:
-            self.node = 'LoginPage'
+            self.node = 'SearchInfo'
         else:
             self.node = node
 
@@ -34,6 +44,6 @@ class ReadIni(object):
 
 
 if __name__ == '__main__':
-    # read = ReadIni()
-    read = ReadIni('../Config/Sys_config.ini', 'Report')
-    print(read.get_value('REPORTURL'))
+    read = ReadIni()
+    # read = ReadIni('Sys_config.ini', 'Base')
+    print(read.get_value('search_input'))

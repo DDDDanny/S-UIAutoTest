@@ -1,0 +1,3 @@
+[2019-10-08 20:53:36,829]-[INFO] get_log.py--> <module> ----->this is a info log
+[2019-10-08 20:53:36,829]-[ERROR] get_log.py--> <module> ----->this is a error log
+[2019-10-08 20:53:36,829]-[WARNING] get_log.py--> <module> ----->this is a warning log
