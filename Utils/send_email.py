@@ -4,50 +4,55 @@
 # @File    : send_email.py
 # @describe: 邮件发送相关
 
-import smtplib
 import os
+import smtplib
 
-from email.mime.text import MIMEText
 from email.header import Header
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-from config.sys_config import *
-
-
-def send_mail(report):
-    f = open(report, 'rb')
-    mail_content = f.read()
-    f.close()
-
-    smtp_server = SMTP
-    user = EMAIL_ADDRESS
-    password = PASSWORD
-    sender = EMAIL_ADDRESS
-    receives = RE_EMAIL_ADDRESS
-    subject = 'UI自动化测试报告'
-
-    msg = MIMEText(mail_content, 'html', 'utf-8')
-    msg['Subject'] = Header(subject, 'utf-8')
-    msg["From"] = sender
-    msg["To"] = ','.join(receives)
-
-    smtp = smtplib.SMTP_SSL(smtp_server, 465)
-    smtp.helo(smtp_server)
-    smtp.ehlo(smtp_server)
-    smtp.login(user, password)
-    print('正在发送邮件>>>>>>>')
-    smtp.sendmail(sender, receives, msg.as_string())
-    smtp.quit()
-    print("邮件已发出，请注意查收!")
+from Utils.read_ini import ReadIni
 
 
-# 查找最新的报告
-def latest_report(report_dir):
-    # 将目录下文件存入list中
-    lists = os.listdir(report_dir)
-    # 排序
-    lists.sort(key=lambda fn: os.path.getmtime(report_dir + "\\" + fn))
-    # 取出最后一个文件，即最新的报告
-    file = os.path.join(report_dir, lists[-1])
-    # print(file)
-    return file
+class SendEmail(object):
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.info = ReadIni('Sys_config.ini', 'Email')
+
+    def new_report(self):
+        report_list = os.listdir(self.file_path)
+        report_list.sort(key=lambda fn: os.path.getmtime(self.file_path + "\\" + fn))
+        file_new = os.path.join(self.file_path, report_list[-1])
+        print("测试结束，报告路径: "+file_new)
+        return file_new
+
+    def send_mail(self, report_file):
+        # 邮件配置信息
+        smtpserver = 'smtp.qq.com'
+        user = self.info.get_value('EMAIL_ADDRESS')
+        password = self.info.get_value('PASSWORD')
+        sender = self.info.get_value('EMAIL_ADDRESS')
+        receiver = ["707956456@qq.com"]
+
+        msg = MIMEMultipart()
+        msg['Subject'] = Header('UI自动化测试报告', 'utf-8')
+        msg["From"] = sender
+        msg["To"] = ",".join(receiver)
+
+        # 邮件正文内容
+        msg.attach(MIMEText('附件为本次UI自动化测试报告，为保证最佳浏览效果，请使用Chrome打开查看', 'plain', 'utf-8'))
+
+        # 构造附件，传入最新的测试报告文件
+        sendfile = open(report_file, 'rb').read()
+        att = MIMEText(sendfile, 'base64', 'utf-8')
+        att["Content-Type"] = 'application/octet-stream'
+        att["Content-Disposition"] = 'attachment; filename="UITestReport.html"'
+        msg.attach(att)
+
+        smtp = smtplib.SMTP_SSL("smtp.qq.com", 465)
+        smtp.connect(smtpserver)
+        smtp.login(user, password)
+        smtp.sendmail(sender, receiver, msg.as_string())
+        smtp.quit()
+        print("邮件发送成功")
 
