@@ -12,7 +12,7 @@ from Test.CaseSuite.case_suite import case_suite
 
 suite = case_suite()
 
-read_ini = ReadIni('./Config/Sys_config.ini', 'Report')
+read_ini = ReadIni('Sys_config.ini', 'Report')
 url = read_ini.get_value('REPORTURL')
 
 if __name__ == '__main__':

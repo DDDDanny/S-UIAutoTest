@@ -12,6 +12,7 @@ import traceback
 
 from Utils.read_ini import ReadIni
 
+
 class TestLogs(object):
     def __init__(self):
         self.logger = logging.getLogger(__name__)
@@ -29,7 +30,7 @@ class TestLogs(object):
         self.logger.addHandler(console)
 
         # 生成日志文件的开关，为debug模式，不生成文件
-        if ReadIni('Sys_config.ini', 'Base').get_value('is_debug') == 'False':
+        if ReadIni('Sys_config.ini', 'Base').get_value('is_debug') == 'True':
             # 生成文件路径
             file_name = datetime.datetime.now().strftime("%Y-%m-%d") + ".log"
 

@@ -14,7 +14,7 @@ from Utils.read_ini import ReadIni
 
 class ScreenShot(object):
     def __init__(self):
-        read_ini = ReadIni('./Config/Sys_config.ini', 'HotScreen')
+        read_ini = ReadIni('Sys_config.ini', 'HotScreen')
         self.url = read_ini.get_value('SCREENSHOTURL')
 
     def screen_shot(self, driver):

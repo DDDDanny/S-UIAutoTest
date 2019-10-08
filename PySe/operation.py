@@ -7,7 +7,6 @@
 import time
 
 from Utils.read_ini import ReadIni
-from Utils.screen_shot import ScreenShot
 
 from selenium.webdriver.common.keys import Keys
 
@@ -38,7 +37,6 @@ class PySelenium(object):
             elif by == 'xpath':
                 return self.driver.find_elements_by_xpath(value)[num]
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise NameError('选择器错误！')
 
     # 浏览器最大化
@@ -72,7 +70,6 @@ class PySelenium(object):
             self.sleep()
             element.click()
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
     # 通过使用JS进行点击操作
@@ -83,7 +80,6 @@ class PySelenium(object):
             self.driver.execute_script("arguments[0].click();", element)
             self.sleep()
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
     # 输入内容
@@ -93,7 +89,6 @@ class PySelenium(object):
             self.sleep()
             element.send_keys(content)
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
     # 获取元素text
@@ -102,7 +97,6 @@ class PySelenium(object):
             self.sleep()
             return self.get_element(node_kw, key).text
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
     # 清空元素内容
@@ -112,7 +106,6 @@ class PySelenium(object):
             self.sleep()
             element.clear()
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
     # 强制清除内容，模拟键盘操作，先ctrl+a再Delete
@@ -123,7 +116,6 @@ class PySelenium(object):
             element.send_keys(Keys.CONTROL, 'a')
             element.send_keys(Keys.DELETE)
         except Exception:
-            ScreenShot().screen_shot(self.driver)
             raise ValueError('element错误！')
 
 
