@@ -30,7 +30,7 @@ This is a simple UI Auto Test👻
 │  │  operation.py  对Selenium的二次封装<br>│<br>├─Test<br>│  ├─Page  页面层<br>│  │  │  demo_page.py<br>
 │  ├─Business  业务层<br>│  │  │  demo_business.py<br>
 │  ├─Case  用例层<br>│  │  │  base_case.py  Case基类<br>│  │  │ demo_case.py<br>
-│  ├─CaseSuite  用例集合<br>│  │  │  case_suite.py<br>│<br>├─Utils  工具库<br>│  │ HTMLTestRunner.py  HTMLTestRunner测试报告<br>│  │ HTMLTestRunner_cn.py  HTMLTestRunner测试报告<br>│  │ read_ini.py  读取配置文件<br>│  │ screen_shot.py  截图工具<br>│  │ send_email.py  发送邮件<br>│<br>├─Result  测试结果<br>│  ├─HotScreen  截图目录<br>│  ├─Report  测试报告<br>│<br>└─run.py  程序入口<br>
+│  ├─CaseSuite  用例集合<br>│  │  │  case_suite.py<br>│<br>├─Utils  工具库<br>│  │ HTMLTestRunner.py  HTMLTestRunner测试报告<br>│  │ HTMLTestRunner_cn.py  HTMLTestRunner测试报告<br>│  │ read_ini.py  读取配置文件<br>│  │ screen_shot.py  截图工具<br>│  │ send_email.py  发送邮件<br>│  │ get_log.py  获取日志<br>│<br>├─Result  测试结果<br>│  ├─HotScreen  截图目录<br>│  ├─Report  测试报告<br>│<br>└─run.py  程序入口<br>
 
 ### 说明
 
