@@ -14,6 +14,8 @@ from Test.Business.demo_business import DemoBusiness
 # Case基类
 class BaseCase(unittest.TestCase):
 
+    driver = None
+
     @classmethod
     def setUpClass(cls) -> None:
         cls.driver = SelectBrowser().select_browser('chrome')
